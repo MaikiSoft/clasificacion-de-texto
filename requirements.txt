@@ -1,0 +1,11 @@
+fastapi
+tensorflow
+nltk
+transformers
+tf-keras
+
+
+
+
+
+
