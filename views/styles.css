@@ -1,13 +1,34 @@
+.containerChat {
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .chat-container {
-    max-width: 400px;
-    margin: 50px auto;
+    height: 500px;
+    max-width: 100%;
     border: 1px solid #ccc;
+    background: #ffffff;
     border-radius: 5px;
     padding: 10px;
+    position: relative;
+    overflow-y: auto;
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    width: calc(100% - 20px);
+    max-width: 580px;
 }
 
 .chat-box {
     margin-bottom: 10px;
+    max-height: 400px;
+    overflow-y: auto;
 }
 
 .chat-message {
@@ -25,3 +46,5 @@
     text-align: right;
     background-color: #dcf8c6;
 }
+
+
