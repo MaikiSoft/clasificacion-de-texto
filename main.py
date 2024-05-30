@@ -4,6 +4,7 @@ from fastapi import FastAPI, Request, Form
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 import nltk
+import json
 from nltk.tokenize import sent_tokenize
 
 nltk.download('punkt')
@@ -57,6 +58,14 @@ def analizar_sentimiento_hf(entrada: str = Form(...)):
     print(division)
     print(suma)
     return dicResultados.get(division)
+
+@app.get("/prueba-json")
+async def prueba_json():
+    # Abrir el archivo JSON y cargar su contenido
+    with open('comentarios.json', 'r') as file:
+        comentarios = json.load(file)
+    
+    return comentarios
 
 # Une las oraciones que sean más cortas que 490 caracteres
 def unir_oraciones(oraciones):
