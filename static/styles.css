@@ -1,5 +1,5 @@
 .containerChat {
-    height: 70vh;
+    height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -15,14 +15,13 @@
     padding: 10px;
     position: relative;
     overflow-y: auto;
-    width: 100%;
-    max-width: 600px;
+    width: 90%;
     margin-bottom: 20px;
 }
 
 .input-group {
     width: calc(100% - 20px);
-    max-width: 580px;
+    max-width: 100%
 }
 
 .chat-box {

@@ -15,13 +15,12 @@ clasificador = pipeline('sentiment-analysis', model=modelo, tokenizer=tokenizado
 
 app = FastAPI()
 
-app.mount("/static", StaticFiles(directory="views"), name="static")
-templates = Jinja2Templates(directory="./views")
+app.mount("/static", StaticFiles(directory="static"), name="static")
+templates = Jinja2Templates(directory="templates")
 
 @app.get("/")
 def read_root(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
-
 
 @app.get("/items/{item_id}")
 def read_item(item_id: int, q: Union[str, None] = None):
@@ -43,7 +42,7 @@ def analizar_sentimiento_hf(entrada: str = Form(...)):
     for i in resultado:
         if i in mapeo_sentimientos:
             suma += mapeo_sentimientos.get(i)
-    division = round(suma/len(resultado))
+    division = round(suma / len(resultado))
     print()
     dicResultados = {
         1: 'malo',
@@ -51,7 +50,7 @@ def analizar_sentimiento_hf(entrada: str = Form(...)):
         3: 'intermedio',
         4: 'bueno',
         5: 'excelente'
-    }        
+    }
     print(oraciones_unidas)
     print(len(oraciones_unidas))
     print(resultado)
@@ -59,35 +58,21 @@ def analizar_sentimiento_hf(entrada: str = Form(...)):
     print(suma)
     return dicResultados.get(division)
 
-
-#une las oraciones que sean mas cortas que 490 caracteres
+# Une las oraciones que sean más cortas que 490 caracteres
 def unir_oraciones(oraciones):
     i = 0
-    while i < len(oraciones) -1:
-        if len(oraciones[i]) < 490 and len(oraciones[i+1]) < 490:
-            oraciones[i] += oraciones[i+1]
-            del oraciones[i+1]
+    while i < len(oraciones) - 1:
+        if len(oraciones[i]) < 490 and len(oraciones[i + 1]) < 490:
+            oraciones[i] += oraciones[i + 1]
+            del oraciones[i + 1]
         else:
             i += 1
     return oraciones
 
-#clasifica los resultados del array para devolver los valores
+# Clasifica los resultados del array para devolver los valores
 def clasificacion(oraciones_unidas):
     arrayresults = []
     for i in oraciones_unidas:
         result = clasificador(i)
         arrayresults.append(result[0]['label'])
     return arrayresults
-
-
-# def clasificadorRespuesta(arrayRest):
-
-
-
-
-
-    
-
-
-
-    
