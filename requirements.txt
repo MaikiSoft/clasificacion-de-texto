@@ -57,6 +57,12 @@ urllib3
 Werkzeug
 wheel
 wrapt
+uvicorn
+fastapi
+
+
+
+
 
 
 
