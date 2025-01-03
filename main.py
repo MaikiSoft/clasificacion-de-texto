@@ -7,7 +7,7 @@ import nltk
 import json
 from nltk.tokenize import sent_tokenize
 
-nltk.download('punkt')
+nltk.download('punkt_tab')
 
 modelo = TFAutoModelForSequenceClassification.from_pretrained('./modelo')
 
